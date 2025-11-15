@@ -1,0 +1,41 @@
+# Haris Code App Flow Document
+
+## Onboarding and Sign-In/Sign-Up
+
+When a new visitor lands on Haris Code, they arrive first at the public landing page. This page introduces the platform, highlights coding challenges, leaderboards, and the benefits of joining. A prominent button labeled Get Started invites them to create an account. Clicking this button navigates the user to the Sign-Up page, where they enter their name, email address, and a password. As they type, the form validates input in real time, ensuring the email format is correct and the password meets security requirements. After completing all fields, the user clicks a Create Account button. The form submits to the backend, where it checks for existing accounts and then sends a verification email. Once the user clicks the link in their email, they return to Haris Code and are automatically signed in. 
+
+Users who already have an account can click a Sign In link on the landing page. They enter their email and password and click Sign In. If the credentials match, they arrive at their Dashboard. Should a user forget their password, a Forgot Password? link on the Sign-In page leads them to a password recovery form. They submit their email and receive a reset link. Clicking that link allows them to set a new password and then automatically sign in.
+
+Signing out is handled via a Log Out option in the header menu. Once clicked, the user is logged out of their session and returned to the landing page.
+
+## Main Dashboard or Home Page
+
+After signing in, the user sees the Main Dashboard. At the top is a header with the Haris Code logo on the left and a user avatar on the right. Clicking the avatar opens a menu with links to Profile, Settings, and Log Out. Below the header is a navigation sidebar on the left. It lists links for Dashboard, Challenges, Leaderboard, and Admin (the Admin link appears only for administrators). The center of the page shows a welcome message and highlights recent activity: the user’s current level, progress toward the next coding test, and quick access to the last challenge they worked on. A Start New Challenge button takes them to the Challenges list. In the footer of the sidebar, there is a toggle for theme (light or dark) and another toggle for language (English or Indonesian).
+
+From the Main Dashboard, the user can click any navigation link. Selecting Challenges goes to a paginated list of challenges sorted by difficulty. Clicking Leaderboard shows global rankings. Clicking Profile (in the header menu) shows their own user profile. If they have admin rights, clicking Admin opens the Admin Panel.
+
+## Detailed Feature Flows and Page Transitions
+
+When the user navigates to the Challenges page, they see a grid of challenge cards with titles, difficulty indicators, and completion status. Clicking a card opens the Challenge Detail page. Here, the challenge description is displayed on the left, including the problem statement and any hints that can be revealed in a dialog. On the right, a code editor loads, preconfigured for the selected programming language. Below the editor are buttons labeled Run Test and Submit Solution. Clicking Run Test sends the current code to the backend in a safe sandbox for preliminary test cases. The results appear in a modal dialog showing passed or failed tests in real time. After refining their code, the user clicks Submit Solution. The system runs the full test suite. A toast notification appears at the bottom right indicating success or failure. If successful, the user’s score is updated and their progress bar on the Dashboard reflects the new points. The user can then click Next Challenge to move to the next challenge or return to the Challenges list.
+
+Selecting the Leaderboard link from the sidebar takes the user to a page listing all users by score. The table shows rank, username, level, and total points. Hovering over a username reveals a tooltip with the user’s profile picture and a brief bio. Clicking a username opens that user’s public Profile page.
+
+Accessing the Profile page from the header menu shows the user’s personal information. A section displays their avatar, name, email, and a bio field. Below, their completed challenges, current streak, and earned badges are listed. Next to the bio is an Edit Profile button. Clicking it transitions the page to an inline edit form. The user can update their display name, bio, and avatar image. Saving their changes returns them to the view mode with updated details.
+
+Administrators see an additional Admin link in the sidebar. Clicking this link opens the Admin Dashboard. Here, admins can switch between subpages for managing Questions, Reviewing Submissions, and Viewing Metrics. On the Questions page, they see a table of existing challenges. Clicking Add New Question transitions to a form where they enter a title, description, difficulty level, programming language, and test cases. They can add multiple test inputs and expected outputs using an embedded form section. Saving creates the new challenge and returns them to the list. On the Review Submissions page, admins see pending code submissions flagged for manual review. They click a submission to view the code and test results and then mark it as approved or request changes. On the Metrics page, admins view overall platform statistics, including active users, average completion times, and error rates. All admin pages include a Back to Dashboard link in the header to return to the Main Dashboard.
+
+## Settings and Account Management
+
+Users access Settings from the header menu. This opens a Settings page with tabs across the top for Profile, Preferences, and Security. Under Profile, they see the same fields as in their public Profile page but also options to change email and upload a new avatar. Under Preferences, they toggle their preferred language, theme, and notification settings. They can turn on or off email alerts for challenge updates or leaderboard changes. Under Security, they find a form to change their password: they enter their current password, the new password, and confirm the new password. Submitting updates their credentials and displays a confirmation message.
+
+After saving any settings, the page shows a Return to Dashboard button at the bottom. Clicking this brings the user back to the Main Dashboard without reloading the entire app, preserving their context.
+
+## Error States and Alternate Paths
+
+If the user enters an invalid email or password during login, the Sign-In page shows an inline error message under the corresponding field. Submitting with missing or invalid sign-up data triggers form validation errors labeled next to each field. If the user’s network connection drops while fetching challenges or submitting code, a full-page fallback appears with a message about connectivity issues and a Retry button. When the user attempts to access the Admin Panel without sufficient privileges, they are redirected back to the Main Dashboard and see a toast notification saying Access Denied: Admins Only.
+
+During code submission, if the sandbox service fails, a modal dialog appears stating Submission Error: Please try again later. Users can close the dialog and resubmit. If the password reset token is invalid or expired, the user sees an error message and a link to request a new password reset email.
+
+## Conclusion and Overall App Journey
+
+From their first visit on the landing page through account creation, users quickly arrive at a personalized Dashboard. They navigate effortlessly to coding challenges, run tests, and submit solutions. Their progress is reflected immediately on the Dashboard and Leaderboard. Administrators manage questions and review submissions through a dedicated Admin Panel. Throughout the app, users can update their profile, change preferences, and recover passwords as needed. Error states are handled gracefully to keep them on track. Over time, learners progress through levels of coding challenges, earn badges, and see their names rise on the global Leaderboard, achieving the end goal of mastering real coding skills in an engaging and supportive environment.
